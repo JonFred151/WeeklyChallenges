@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
 
 namespace ChallengesWithTestsMark8
 {
@@ -7,47 +9,97 @@ namespace ChallengesWithTestsMark8
     {
         public bool ArrayContainsAFalse(bool[] vals)
         {
-            throw new NotImplementedException();
+           
+            if(Array.Exists(vals, element => element == false))
+            {
+                
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool IsSumOfOddsOdd(IEnumerable<int> numbers)
         {
-            throw new NotImplementedException();
+            if (numbers == null)
+            {
+                return false;
+            }
+            int? odd = numbers.Sum();
+                     
+                if (odd % 2 == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+                     
         }
 
         public bool PasswordContainsUpperLowerAndNumber(string password)
         {
-            throw new NotImplementedException();
+            bool Upper = password.Any(char.IsUpper);
+            bool lower = password.Any(char.IsLower);
+            bool num = password.Any(char.IsDigit);
+            if (Upper && lower && num)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public char GetFirstLetterOfString(string val)
         {
-            throw new NotImplementedException();
+             char FirstLetter = val.FirstOrDefault();
+            return FirstLetter;
         }
 
         public char GetLastLetterOfString(string val)
         {
-            throw new NotImplementedException();
+            char LastLetter = val.LastOrDefault();
+            return LastLetter;
         }
 
         public decimal Divide(decimal dividend, decimal divisor)
         {
-            throw new NotImplementedException();
+            
+            if (divisor == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                 return dividend / divisor;
+                
+            }            
         }
 
         public int LastMinusFirst(int[] nums)
         {
-            throw new NotImplementedException();
+            return nums.Last() - nums.First();
         }
 
         public int[] GetOddsBelow100()
         {
-            throw new NotImplementedException();
+            return Enumerable.Range(1, 100).Where(x => x % 2 != 0).ToArray();
         }
 
         public void ChangeAllElementsToUppercase(string[] words)
         {
-            throw new NotImplementedException();
+
+            
+            for (int i = 0; i < words.Length; i++) 
+            {
+                words[i] = words[i].ToUpper();
+            }
+            
         }
     }
 }
