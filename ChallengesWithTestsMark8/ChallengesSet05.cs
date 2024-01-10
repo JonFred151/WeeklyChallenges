@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ChallengesWithTestsMark8
 {
@@ -60,34 +61,61 @@ namespace ChallengesWithTestsMark8
         {
             if (words == null || words.Length == 0)
             {
-                return " ";
-            }
-            string combine = " ";
-           foreach(string word in words)
-            {
-                if(word.Trim().Length > 0)
+                return ""; 
+            }   
+                string combine = " "; // Initialize as empty string
+                foreach (string word in words)
                 {
-                     combine += word.Trim() + " ";
+                  
+                    string TrimString = word.Trim();
+                    if(!string.IsNullOrEmpty(TrimString)) 
+                    {
+                    combine += word.Trim() + " ";
+                    }                            
+                    
                 }
-                if (combine.Length == 0)
+                if (string.IsNullOrWhiteSpace(combine)) 
                 {
-                    return " ";
+                    return "";
                 }
-               
-            }
-            combine = combine.Trim();
-            combine += ".";
-            return combine;
+                 
+                combine = combine.Trim();
+                combine += ".";
+                return combine;
+
+                         
         }
 
         public double[] GetEveryFourthElement(List<double> elements)
         {
-            throw new NotImplementedException();
+            if (elements == null || elements.Count == 0) { return new double[0]; }
+
+            List<double> result = new List<double>();
+
+            for(int i = 3; i < elements.Count; i += 4)
+            {
+                result.Add(elements[i]);
+            }
+            return result.ToArray();
+           
+
+
         }
 
         public bool TwoDifferentElementsInArrayCanSumToTargetNumber(int[] nums, int targetNumber)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j =  i + 1;  j < nums.Length; j++)
+                {
+                    if (nums[i] + nums[j] == targetNumber)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }
